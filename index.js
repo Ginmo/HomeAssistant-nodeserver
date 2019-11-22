@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 4000;
 const usersComponent = require('./components/users');
+const temperatureComponent = require('./components/temperature');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('./db');
@@ -41,6 +42,7 @@ app.route('/world')
 
 /* demonstrate route module/component usage - the dogComponent content is defined in separate file */
 app.use('/users', usersComponent);
+app.use('/temperature', temperatureComponent);
 
 
 
