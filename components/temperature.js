@@ -31,6 +31,10 @@ router.get('/:dogId', (req, res) => {
         image: string - whole url to image
     }
 */
+router.post('/test', (req, res) => {
+	res.send('test!' + req.body));
+});
+
 router.post('/', (req, res) => {
 
     db.query('INSERT INTO dogHouse (name, image) VALUES (?,?)', [req.body.name, req.body.image])
