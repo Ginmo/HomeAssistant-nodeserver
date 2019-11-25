@@ -31,9 +31,7 @@ router.get('/:dogId', (req, res) => {
         image: string - whole url to image
     }
 */
-router.post('/test', (req, res) => {
-	res.send('test!' + req.body));
-});
+
 
 router.post('/', (req, res) => {
 
