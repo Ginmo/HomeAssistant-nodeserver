@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 //  Return information of a single light
 router.get('/:lightId', (req, res) => {
-    db.query('SELECT * FROM lights where idLights = ?', [req.params.lights.Id])
+    db.query('SELECT * FROM lights where idLights = ?', [req.params.lightId])
     .then(results => {
         res.json(results);
     })
