@@ -4,7 +4,7 @@ const router = express.Router();
 
 //  Return all lights status
 router.get('/', (req, res) => { 
-    db.query('SELECT * FROM temperature').then(results => {
+    db.query('SELECT * FROM lights').then(results => {
         res.json({ lights: results})
     })
     .catch(() => {
