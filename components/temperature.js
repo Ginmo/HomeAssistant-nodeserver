@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 //  Return information of a single temperature
 router.get('/:temperatureId', (req, res) => {
-    db.query('SELECT * FROM temperature where id = ?', [req.params.temperatureId])
+    db.query('SELECT * FROM temperature where idTemperature = ?', [req.params.temperatureId])
     .then(results => {
         res.json(results);
     })

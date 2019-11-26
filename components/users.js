@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 //  Return information of a single user
 router.get('/:userId', (req, res) => {
-    db.query('SELECT * FROM users where id = ?', [req.params.userId])
+    db.query('SELECT * FROM users where idUsers = ?', [req.params.userId])
     .then(results => {
         res.json(results);
     })
