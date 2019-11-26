@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
 
 //  Return information of a single light
 router.get('/:lightId', (req, res) => {
+    console.log("test: " + req.params.lightId);
     db.query('SELECT * FROM lights where idLights = ?', [req.params.lightId])
     .then(results => {
         res.json(results);
@@ -24,7 +25,7 @@ router.get('/:lightId', (req, res) => {
     });
 })
 
-/* Update temperature
+/* Update lightstatus
     Expects the following data format
     {
         lightstatus: string
