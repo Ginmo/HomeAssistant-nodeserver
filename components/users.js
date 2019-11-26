@@ -2,7 +2,7 @@ const express = require('express');
 const db = require('../db');
 const router = express.Router();
 
-//  Return all dog information 
+//  Return all users
 router.get('/', (req, res) => { 
     db.query('SELECT * FROM users').then(results => {
         res.json({ users: results})
@@ -12,9 +12,9 @@ router.get('/', (req, res) => {
     })    
 });
 
-//  Return information of a single dog 
-router.get('/:dogId', (req, res) => {
-    db.query('SELECT * FROM dogHouse where id = ?', [req.params.dogId])
+//  Return information of a single user
+router.get('/:userId', (req, res) => {
+    db.query('SELECT * FROM users where id = ?', [req.params.userId])
     .then(results => {
         res.json(results);
     })
@@ -24,16 +24,15 @@ router.get('/:dogId', (req, res) => {
     });
 })
 
-/* Create a new dog 
+/* Update user password
     Expects the following data format
     {
-        name: string, 
-        image: string - whole url to image
+        newpassword: string
     }
 */
 router.post('/', (req, res) => {
 
-    db.query('INSERT INTO dogHouse (name, image) VALUES (?,?)', [req.body.name, req.body.image])
+    db.query('UPDATE users SET password = ? WHERE idUser = 1', [req.body.newpassword])
     .then(results => {
         console.log(results);
         res.sendStatus(201);

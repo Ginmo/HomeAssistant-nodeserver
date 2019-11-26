@@ -2,19 +2,19 @@ const express = require('express');
 const db = require('../db');
 const router = express.Router();
 
-//  Return all temperatures
+//  Return all lights status
 router.get('/', (req, res) => { 
     db.query('SELECT * FROM temperature').then(results => {
-        res.json({ temperature: results})
+        res.json({ lights: results})
     })
     .catch(() => {
         res.sendStatus(500);
     })    
 });
 
-//  Return information of a single temperature
-router.get('/:temperatureId', (req, res) => {
-    db.query('SELECT * FROM temperature where id = ?', [req.params.temperatureId])
+//  Return information of a single light
+router.get('/:lightId', (req, res) => {
+    db.query('SELECT * FROM lights where id = ?', [req.params.lights.Id])
     .then(results => {
         res.json(results);
     })
@@ -27,13 +27,13 @@ router.get('/:temperatureId', (req, res) => {
 /* Update temperature
     Expects the following data format
     {
-        temperature: string
+        lightstatus: string
     }
 */
 
 router.post('/', (req, res) => {
-    console.log("test: " + req.body.temperature);
-    db.query('UPDATE temperature SET currentTemperature = ? WHERE idTemperature = 1', [req.body.temperature])
+    console.log("test: " + req.body.lightstatus);
+    db.query('UPDATE lights SET lightStatus = ? WHERE idLights = 1', [req.body.lightstatus])
     .then(results => {
         console.log(results);
         res.sendStatus(201);
