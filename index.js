@@ -37,8 +37,8 @@ app.post('/api/posts', (req, res) => {
             res.sendStatus(403);
         } else {
             res.json({
-                message: 'Post created',
-                authData:
+                message: 'Post created...',
+                authData
             });
         }
     });
