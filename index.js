@@ -71,7 +71,7 @@ function verifyToken(req, res, next) {
         // Get token from array
         const bearerToken = bearer[1];
         // Set the token
-        req.token = bearToken;
+        req.token = bearerToken;
         // Next middleware
         next();
     } else {
