@@ -7,6 +7,7 @@ const lightsComponent = require('./components/lights');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('./db');
+const jwt = require ('jsonwebtoken');
 
 const customHeaderCheckerMiddleware = function(req, res, next) {
     console.log('Middleware is active!');
@@ -22,6 +23,62 @@ const customHeaderCheckerMiddleware = function(req, res, next) {
 //app.use(customHeaderCheckerMiddleware);
 app.use(bodyParser.json());
 app.use(cors())
+
+// token api
+app.get('/api', (req, res) => {
+    res.json({
+        message: 'Welcome to the API'
+    })
+});
+
+app.post('/api/posts', (req, res) => {
+    jwt.verify(req.token, 'secretkey', (err, authData) => {
+        if (err) {
+            res.sendStatus(403);
+        } else {
+            res.json({
+                message: 'Post created',
+                authData:
+            });
+        }
+    });
+});
+
+app.post('/api/login', (res, res) => {
+    // Mock user
+    const user = {
+        id: 1,
+        user: "kimmo"
+    }
+    jwt.sign({user}, 'secretkey', { expiresIn: '30s'}, (err, token) => {
+        res.json({
+            token
+        });
+    });
+});
+
+// FORMAT OF TOKEN
+// Authorization: Bearer <acces_token>
+
+// Verify Token
+function verifyToken(req, res, next) {
+    // Get auth header value
+    const bearerHeader = req.headers['authorization'];
+    // Check if bearer is undefined
+    if (typeof bearerHeader !== 'undefined') {
+        // Split at the space
+        const bearer = bearerHeader.split(' ');
+        // Get token from array
+        const bearerToken = bearer[1];
+        // Set the token
+        req.token = bearToken;
+        // Next middleware
+        next();
+    } else {
+        // Forbidden
+        res.sendStatus(403);
+    }
+}
 
 /* basic HTTP method handling */
 app.get('/hello', (req, res) => res.send('Hello GET World!'));
