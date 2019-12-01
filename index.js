@@ -44,7 +44,7 @@ app.post('/api/posts', (req, res) => {
     });
 });
 
-app.post('/api/login', (res, res) => {
+app.post('/api/login', (req, res) => {
     // Mock user
     const user = {
         id: 1,
