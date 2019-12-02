@@ -8,7 +8,6 @@ const tokenComponent = require('./components/token');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('./db');
-const jwt = require ('jsonwebtoken');
 
 const customHeaderCheckerMiddleware = function(req, res, next) {
     console.log('Middleware is active!');

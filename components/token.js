@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('../db');
 const router = express.Router();
+const jwt = require ('jsonwebtoken');
 
 // token api
 router.get('/', (req, res) => {
