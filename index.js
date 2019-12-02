@@ -46,7 +46,7 @@ app.route('/world')
 app.use('/users', usersComponent);
 app.use('/temperature', temperatureComponent);
 app.use('/lights', lightsComponent);
-app.use('/api', tokenComponent);
+app.use('/token', tokenComponent);
 
 
 
