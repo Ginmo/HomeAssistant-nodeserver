@@ -3,13 +3,13 @@ const db = require('../db');
 const router = express.Router();
 
 // token api
-router.get('/api', (req, res) => {
+router.get('/', (req, res) => {
     res.json({
         message: 'Welcome to the API'
     })
 });
 
-router.post('/api/posts', verifyToken, (req, res) => {
+router.post('/posts', verifyToken, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
             res.sendStatus(403);
@@ -22,7 +22,7 @@ router.post('/api/posts', verifyToken, (req, res) => {
     });
 });
 
-router.post('/api/login', (req, res) => {
+router.post('/login', (req, res) => {
     const user = req.body
     console.log(user);
     jwt.sign({user}, 'secretkey', { expiresIn: '30s'}, (err, token) => {
