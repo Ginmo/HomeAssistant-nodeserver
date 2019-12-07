@@ -43,10 +43,11 @@ app.post('/users', (req, res) => {
         //users = json({ users: results})
         users = results;
         console.log("ddd");
-        console.log(users.length);
+        
     }).catch(() => {
         res.sendStatus(500);
     });
+    console.log(users.length);
     let username = req.body.username;
     let password = req.body.password;
     for (let i = 0; i < users.length; i++) {
