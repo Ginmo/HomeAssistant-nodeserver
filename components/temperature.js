@@ -32,7 +32,6 @@ router.get('/:temperatureId', (req, res) => {
 */
 
 router.post('/', (req, res) => {
-    console.log("test: " + req.body.temperature);
     db.query('UPDATE temperature SET currentTemperature = ? WHERE idTemperature = 1', [req.body.temperature])
     .then(results => {
         console.log(results);
