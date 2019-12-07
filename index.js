@@ -43,7 +43,7 @@ app.post('/users', (req, res) => {
         //users = json({ users: results})
         users = results;
         console.log("ddd");
-        console.log(users);
+        console.log(users.length);
     }).catch(() => {
         res.sendStatus(500);
     });
