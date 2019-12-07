@@ -38,6 +38,7 @@ app.get('/main', (req, res) => {
 app.post('/users', (req, res) => {
     var users;
     db.query('SELECT * FROM users').then(results => {
+        console.log(results);
         users = json({ users: results})
         console.log("ddd");
         console.log(users);
