@@ -8,6 +8,7 @@ const tokenComponent = require('./components/token');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('./db');
+const jwt = require ('jsonwebtoken');
 
 const customHeaderCheckerMiddleware = function(req, res, next) {
     console.log('Middleware is active!');
@@ -23,6 +24,78 @@ const customHeaderCheckerMiddleware = function(req, res, next) {
 //app.use(customHeaderCheckerMiddleware);
 app.use(bodyParser.json());
 app.use(cors());
+
+app.use(express.static('public'));
+
+app.get('/login', (req, res) => {
+    res.sendFile(__dirname + '/public/login.html');
+});
+
+app.get('/main', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
+
+app.post('/users', (req, res) => {
+    let users;
+    db.query('SELECT * FROM users').then(results => {
+        users = json({ users: results})
+        console.log(results);
+    }).catch(() => {
+        res.sendStatus(500);
+    });
+    let username = req.body.username;
+    let password = req.body.password;
+    console.log(username, password);
+    for (let i = 0; i < users.length; i++) {
+        //console.log(users[i]);
+        if (users[i].username == username && users[i].password == password) {
+            console.log("FOUND");
+            jwt.sign({username}, 'secretkey', { expiresIn: '60s'}, (err, token) => {
+                res.json({
+                    token
+                });
+            });
+            //res.sendStatus(200, "asdf");
+            //res.json(username);
+            return;
+        }
+    }
+    res.sendStatus(404);
+});
+
+app.get('/getstatus', verifyToken, (req, res) => {
+    jwt.verify(req.token, 'secretkey', (err, authData) => {
+        if (err) {
+            res.sendStatus(401);
+        } else {
+            res.sendStatus(200);
+        }
+    });
+});
+
+// FORMAT OF TOKEN
+// Authorization: Bearer <acces_token>
+
+// Verify Token
+function verifyToken(req, res, next) {
+    // Get auth header value
+    const bearerHeader = req.headers['authorization'];
+    // Check if bearer is undefined
+    if (typeof bearerHeader !== 'undefined') {
+        // Split at the space
+        const bearer = bearerHeader.split(' ');
+        // Get token from array
+        const bearerToken = bearer[1];
+        // Set the token
+        req.token = bearerToken;
+        // Next middleware
+        next();
+    } else {
+        // Forbidden
+        res.sendFile(__dirname + '/public/login.html');
+    }
+}
+
 
 /* basic HTTP method handling */
 app.get('/hello', (req, res) => res.send('Hello GET World!'));
@@ -43,7 +116,7 @@ app.route('/world')
     .delete((req, res) => res.send('delete World'))
 
 /* demonstrate route module/component usage - the dogComponent content is defined in separate file */
-app.use('/users', usersComponent);
+app.use('/userss', usersComponent);
 app.use('/temperature', temperatureComponent);
 app.use('/lights', lightsComponent);
 app.use('/token', tokenComponent);
