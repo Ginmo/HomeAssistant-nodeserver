@@ -39,15 +39,14 @@ var users;
 app.post('/users', (req, res) => {
     db.query('SELECT * FROM users').then(results => {
         console.log(results);
-        console.log(results[0].username);
+        
         //users = json({ users: results})
         users = results;
         console.log("ddd");
-        
+        console.log(users[0].username);
     }).catch(() => {
         res.sendStatus(500);
-    })
-    console.log(users.length);
+    });
     let username = req.body.username;
     let password = req.body.password;
     for (let i = 0; i < users.length; i++) {
