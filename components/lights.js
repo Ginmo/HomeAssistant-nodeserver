@@ -32,7 +32,6 @@ router.get('/:lightId', (req, res) => {
 */
 
 router.post('/', (req, res) => {
-    console.log("test: " + req.body.lightstatus);
     db.query('UPDATE lights SET lightStatus = ? WHERE idLights = 1', [req.body.lightstatus])
     .then(results => {
         console.log(results);
