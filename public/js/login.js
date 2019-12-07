@@ -23,11 +23,6 @@ function readToken() {
   console.log(testvar);
 }
 
-function logout() {
-  localStorage.removeItem("token");
-  window.location.replace('/login');
-}
-
 function login() {
   let username = document.getElementById("username").value;
   let password = document.getElementById("password").value;

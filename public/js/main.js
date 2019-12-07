@@ -6,3 +6,8 @@ axios.get('/getusername', {
     console.log(response);
     document.getElementById("username").innerText = response.data.username;
   })
+
+  function logout() {
+    localStorage.removeItem("token");
+    window.location.replace('/login');
+  }
