@@ -46,7 +46,7 @@ app.post('/users', (req, res) => {
         
     }).catch(() => {
         res.sendStatus(500);
-    });
+    })
     console.log(users.length);
     let username = req.body.username;
     let password = req.body.password;
