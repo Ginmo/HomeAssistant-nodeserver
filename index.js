@@ -35,8 +35,8 @@ app.get('/main', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
 });
 
+var users = [];
 app.post('/users', (req, res) => {
-    var users = [];
     db.query('SELECT * FROM users').then(results => {
         console.log(results);
         
