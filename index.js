@@ -39,24 +39,19 @@ app.post('/users', (req, res) => {
     let users;
     db.query('SELECT * FROM users').then(results => {
         users = json({ users: results})
-        console.log(results);
+        console.log(users);
     }).catch(() => {
         res.sendStatus(500);
     });
     let username = req.body.username;
     let password = req.body.password;
-    console.log(username, password);
     for (let i = 0; i < users.length; i++) {
-        //console.log(users[i]);
         if (users[i].username == username && users[i].password == password) {
-            console.log("FOUND");
             jwt.sign({username}, 'secretkey', { expiresIn: '60s'}, (err, token) => {
                 res.json({
                     token
                 });
             });
-            //res.sendStatus(200, "asdf");
-            //res.json(username);
             return;
         }
     }
