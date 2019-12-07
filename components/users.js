@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     })
     .catch(() => {
         res.sendStatus(500);
-    })    
+    })
 });
 
 //  Return information of a single user
