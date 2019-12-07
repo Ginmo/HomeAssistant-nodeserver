@@ -36,7 +36,7 @@ app.get('/main', (req, res) => {
 });
 
 app.post('/users', (req, res) => {
-    let users;
+    var users;
     db.query('SELECT * FROM users').then(results => {
         users = json({ users: results})
         console.log("ddd");
