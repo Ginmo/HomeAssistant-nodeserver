@@ -61,7 +61,7 @@ app.post('/users', (req, res) => {
     }).catch(() => {
         res.sendStatus(500);
     });
-    res.sendStatus(404);
+    //res.sendStatus(404);
 });
 
 app.get('/getstatus', verifyToken, (req, res) => {
