@@ -51,17 +51,16 @@ app.post('/users', (req, res) => {
             if (results[i].username == username && users[i].password == password) {
                 console.log("FOUND");
                 jwt.sign({username}, 'secretkey', { expiresIn: '60s'}, (err, token) => {
-                    res.json({ token });
-                    return;
+                    res.json({
+                        token
+                    });
                 });
-                
-            }else {
-                res.sendStatus(404);
             }
         }
     }).catch(() => {
         res.sendStatus(500);
     });
+    res.sendStatus(404);
 });
 
 app.get('/getstatus', verifyToken, (req, res) => {
