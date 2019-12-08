@@ -55,9 +55,9 @@ app.post('/users', (req, res) => {
                         token
                     });
                 });
-                return;
             }
         }
+        return;
     }).catch(() => {
         res.sendStatus(500);
     });
