@@ -43,24 +43,25 @@ app.post('/users', (req, res) => {
         console.log("ddd");
         console.log(results[0].username);
         console.log(results.length);
+        let username = req.body.username;
+        let password = req.body.password;
+        console.log(username, password);
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].username == username && users[i].password == password) {
+                console.log("FOUND");
+                jwt.sign({username}, 'secretkey', { expiresIn: '60s'}, (err, token) => {
+                    res.json({
+                        token
+                    });
+                });
+                return;
+            }
+        }
+        res.sendStatus(404);
     }).catch(() => {
         res.sendStatus(500);
     });
-    let username = req.body.username;
-    let password = req.body.password;
-    console.log(username, password);
-    for (let i = 0; i < users.length; i++) {
-        if (users[i].username == username && users[i].password == password) {
-            console.log("FOUND");
-            jwt.sign({username}, 'secretkey', { expiresIn: '60s'}, (err, token) => {
-                res.json({
-                    token
-                });
-            });
-            return;
-        }
-    }
-    res.sendStatus(404);
+
 });
 
 app.get('/getstatus', verifyToken, (req, res) => {
