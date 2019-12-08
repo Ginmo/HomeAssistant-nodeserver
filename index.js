@@ -56,6 +56,8 @@ app.post('/users', (req, res) => {
                     });
                     return;
                 });
+                
+            } else {
                 res.sendStatus(404);
             }
         }
