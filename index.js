@@ -43,11 +43,11 @@ app.post('/users', (req, res) => {
         console.log("ddd");
         console.log(results[0].username);
         console.log(results.length);
-        let username = req.body.username;
-        let password = req.body.password;
     }).catch(() => {
         res.sendStatus(500);
     });
+    let username = req.body.username;
+    let password = req.body.password;
     console.log(username, password);
     for (let i = 0; i < users.length; i++) {
         if (users[i].username == username && users[i].password == password) {
