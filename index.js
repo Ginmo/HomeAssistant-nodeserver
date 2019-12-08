@@ -52,6 +52,8 @@ app.post('/users', (req, res) => {
                     res.json({ token });
                     return;
                 });
+                
+            }else {
                 res.sendStatus(404);
             }
         }
