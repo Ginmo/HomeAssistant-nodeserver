@@ -45,22 +45,21 @@ app.post('/users', (req, res) => {
         console.log(results.length);
         let username = req.body.username;
         let password = req.body.password;
-        
-        for (let i = 0; i < results.length; i++) {
-            console.log(username, password);
-            if (results[i].username == username && users[i].password == password) {
-                console.log("FOUND");
-                jwt.sign({username}, 'secretkey', { expiresIn: '60s'}, (err, token) => {
-                    res.json({
-                        token
-                    });
-                });
-            }
-        }
-        return;
     }).catch(() => {
         res.sendStatus(500);
     });
+    console.log(username, password);
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].username == username && users[i].password == password) {
+            console.log("FOUND");
+            jwt.sign({username}, 'secretkey', { expiresIn: '60s'}, (err, token) => {
+                res.json({
+                    token
+                });
+            });
+            return;
+        }
+    }
     res.sendStatus(404);
 });
 
