@@ -42,6 +42,7 @@ app.post('/users', (req, res) => {
         users = results;
         console.log("ddd");
         console.log(results[0].username);
+        console.log(results.length);
         let username = req.body.username;
         let password = req.body.password;
         for (let i = 0; i < results.length; i++) {
