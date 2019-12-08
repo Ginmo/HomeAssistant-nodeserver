@@ -54,17 +54,14 @@ app.post('/users', (req, res) => {
                     res.json({
                         token
                     });
-                    return;
                 });
-                
-            } else {
-                res.sendStatus(404);
+                return;
             }
         }
     }).catch(() => {
         res.sendStatus(500);
     });
-    //res.sendStatus(404);
+    res.sendStatus(404);
 });
 
 app.get('/getstatus', verifyToken, (req, res) => {
