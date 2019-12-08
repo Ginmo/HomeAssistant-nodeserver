@@ -53,7 +53,8 @@ app.post('/users', (req, res) => {
                 jwt.sign({username}, 'secretkey', { expiresIn: '60s'}, (err, token) => {
                     res.json({
                         token
-                    });
+                    })
+                    return;
                 });
             }
         }
