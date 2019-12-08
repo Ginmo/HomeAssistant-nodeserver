@@ -39,26 +39,23 @@ var users = [];
 app.post('/users', (req, res) => {
     db.query('SELECT * FROM users').then(results => {
         console.log(results);
-        
-        //users = json({ users: results})
         users = results;
         console.log("ddd");
-        console.log(users[0].username);
+        console.log(results[0].username);
+        let username = req.body.username;
+        let password = req.body.password;
+        for (let i = 0; i < results.length; i++) {
+            if (results[i].username == username && users[i].password == password) {
+                jwt.sign({username}, 'secretkey', { expiresIn: '60s'}, (err, token) => {
+                    res.json({
+                        token
+                    });
+                });
+            }
+        }
     }).catch(() => {
         res.sendStatus(500);
     });
-    let username = req.body.username;
-    let password = req.body.password;
-    for (let i = 0; i < users.length; i++) {
-        if (users[i].username == username && users[i].password == password) {
-            jwt.sign({username}, 'secretkey', { expiresIn: '60s'}, (err, token) => {
-                res.json({
-                    token
-                });
-            });
-            return;
-        }
-    }
     res.sendStatus(404);
 });
 
