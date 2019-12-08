@@ -50,6 +50,7 @@ app.post('/users', (req, res) => {
             if (results[i].username == username && users[i].password == password) {
                 jwt.sign({username}, 'secretkey', { expiresIn: '60s'}, (err, token) => {
                     res.json({ token });
+                    return;
                 });
                 res.sendStatus(404);
             }
