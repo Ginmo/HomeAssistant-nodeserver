@@ -49,16 +49,15 @@ app.post('/users', (req, res) => {
         for (let i = 0; i < results.length; i++) {
             if (results[i].username == username && users[i].password == password) {
                 jwt.sign({username}, 'secretkey', { expiresIn: '60s'}, (err, token) => {
-                    res.json({
-                        token
-                    });
+                    res.json({ token });
+                    return;
                 });
             }
         }
     }).catch(() => {
-        res.sendStatus(404);
+        res.sendStatus(500);
     });
-    //res.sendStatus(404);
+    res.sendStatus(404);
 });
 
 app.get('/getstatus', verifyToken, (req, res) => {
