@@ -25,7 +25,11 @@ const customHeaderCheckerMiddleware = function(req, res, next) {
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use(express.static('public'));
+const options = {
+    index: 'login.html'
+};
+
+app.use(express.static('public', options));
 
 app.get('/login', (req, res) => {
     res.sendFile(__dirname + '/public/login.html');
