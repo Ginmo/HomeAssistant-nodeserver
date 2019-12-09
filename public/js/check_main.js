@@ -37,5 +37,5 @@ function logout() {
 
 setTimeout(function() {
   document.getElementsByTagName("BODY")[0].style.display = "block"
-}, 2000);
+}, 1000);
   
