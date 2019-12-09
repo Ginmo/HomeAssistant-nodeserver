@@ -43,8 +43,3 @@ function checkUserinfo() {
     console.log(error);
   })
 }
-
-function logout() {
-  localStorage.removeItem("token");
-  window.location.replace('/login');
-}
