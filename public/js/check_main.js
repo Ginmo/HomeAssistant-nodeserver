@@ -1,3 +1,5 @@
+document.getElementsByTagName("BODY")[0].style.display = "none";
+
 var token = localStorage.getItem("token");
 console.log(token);
 axios.get('/getstatus', {
@@ -32,3 +34,8 @@ function logout() {
   localStorage.removeItem("token");
   window.location.replace('/login');
 }
+
+setTimeout(function() {
+  document.getElementsByTagName("BODY")[0].style.display = "block"
+}, 2000);
+  
