@@ -20,10 +20,15 @@ axios.get('/getstatus', {
 });
 
 axios.get('/getusername', {
-    headers: {
-      'Authorization': 'Bearer ' + token
-    }
-  }).then(function (response) {
-    console.log(response);
-    document.getElementById("loggedInUsername").innerText = response.data.username;
-  });
+  headers: {
+    'Authorization': 'Bearer ' + token
+  }
+}).then(function (response) {
+  console.log(response);
+  document.getElementById("loggedInUsername").innerText = response.data.username;
+});
+
+function logout() {
+  localStorage.removeItem("token");
+  window.location.replace('/login');
+}
