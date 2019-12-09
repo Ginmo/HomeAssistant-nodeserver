@@ -36,7 +36,7 @@ function checkUserinfo() {
   }).then(function (response) {
     let token = response.data.token;
     localStorage.setItem("token", token);
-    window.location.replace('/');
+    window.location.replace('/main');
     console.log(token);
   }).catch(function (error) {
     document.getElementById("loginMessage").innerText = "Wrong username or password.";
