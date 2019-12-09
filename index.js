@@ -35,8 +35,15 @@ app.get('/login', (req, res) => {
     res.sendFile(__dirname + '/public/login.html');
 });
 
-app.get('/main', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+app.get('/main', verifyToken, (req, res) => {
+    jwt.verify(req.token, 'secretkey', (err, authData) => {
+        if (err) {
+            res.sendStatus(401);
+        } else {
+            //res.sendStatus(200);
+            res.sendFile(__dirname + '/public/index.html');
+        }
+    });
 });
 
 var users = [];
