@@ -1,19 +1,174 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
   <head>
+    <title>HomeAssistant</title>
     <meta charset="utf-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Prata&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+		<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" href="css/nouislider.css">
+
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    Main page
-    <div id="username">
 
-    </div>
-    <button type="button" name="button" onclick="logout()">Logout</button>
+  <div class="main-section">
+
+		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html">Home Assistant</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	        	<li class="dropdown nav-item">
+              <a href="#" class="dropdown-toggle nav-link icon d-flex align-items-center" data-toggle="dropdown">
+                <i class="ion-ios-apps mr-2"></i>
+                Username
+                <b class="caret"></b>
+              </a>
+              <div class="dropdown-menu dropdown-menu-left" id="loggedInUsername">
+                <a href="#" class="dropdown-item"><i class="ion-ios-apps mr-2"></i> Settings</a>
+                <a href="#" class="dropdown-item"><i class="ion-ios-document mr-2"></i> Logout</a>
+              </div>
+            </li>
+	        </ul>
+	      </div>
+		  </div>
+	  </nav>
+    <!-- END nav -->
+
+		<section class="ftco-section ftco-section-2 bg-light" id="cards">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2 class="heading-section mb-4 pb-md-3">
+							Home Assistant
+              <div class="clock"id="clock"></div>
+              <div class="date"id="date"></div>
+
+						</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<h2 class="heading-section mb-4 pb-md-3">
+						</h2>
+						<div class="card">
+						  <h5 class="card-header py-4">Kamera</h5>
+						  <div class="card-body">
+						    <h5 class="card-title"></h5>
+						    <p class="card-text">Kameran kuva tähän</p>
+						  </div>
+						</div>
+					</div>
+          <div class="col-md-4">
+						<h2 class="heading-section mb-4 pb-md-3">
+						</h2>
+						<div class="card">
+						  <h5 class="card-header py-4">Valot</h5>
+						  <div class="card-body">
+						    <h5 class="card-title"></h5>
+                <div class="form-check">
+                  <label class="custom-control ios-switch">
+                    <input type="checkbox" class="ios-switch-control-input" id="roomLights">
+                    <span class="ios-switch-control-indicator"></span>
+                    <span class="ios-switch-control-description">Valot päälle ja pois</span>
+                  </label>
+                </div>
+						  </div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<h2 class="heading-section mb-4 pb-md-3">
+
+						</h2>
+						<div class="card text-center">
+						  <h5 class="card-header py-4">
+						    Säätiedot ja lämpötila
+						  </h5>
+						  <div class="card-body">
+						    <p class="card-text">Huoneen lämpötila</p>
+                <h1 class="card-text" id="roomTemperature">asdf</h1>
+						  </div>
+						  <div class="card-footer">
+
+                  <p class="card text-center">
+                    <div id="weather">
+                      <img src="" alt="weathericon" id="picurl">
+                      <div id="location"></div>
+                      <h1 id="temp"></h1>
+                      <div id="description"></div>
+                    </div>
+                  </p>
+						  </div>
+					</div>
+				</div>
+			</div>
+	  </section>
+
+	  <!-- - - - - -end- - - - -  -->
+	  <footer class="ftco-section ftco-section-2">
+	  	<div class="col-md-12 text-center">
+          <p class="mb-0">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>
+              document.write(new Date().getFullYear());
+
+            </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+	  </footer>
+
+  </div>
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+  <script src ="js/check_main.js"></script>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+
+  <script src="js/nouislider.min.js"></script>
+  <script src="js/moment-with-locales.min.js"></script>
+  <script src="js/bootstrap-datetimepicker.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/frontpage.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+  <script src="js/weather.js"></script>
+  <script src="js/temperature.js"></script>
+  <script src ="js/lights.js"></script>
+
+
   </body>
 </html>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
-<script src="js/check_main.js"></script>
-<script src="js/main.js"></script>

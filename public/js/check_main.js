@@ -18,3 +18,12 @@ axios.get('/getstatus', {
   console.log("go to error");
   window.location.replace("/login");
 });
+
+axios.get('/getusername', {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  }).then(function (response) {
+    console.log(response);
+    document.getElementById("loggedInUsername").innerText = response.data.username;
+  });

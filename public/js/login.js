@@ -1,31 +1,35 @@
-function getToken() {
-  axios.post('/login', {
-    "name" : "testuser"
-  })
-  .then(function (response) {
-    console.log(response.data.token);
-    let token = response.data.token;
-    localStorage.setItem("token", token);
 
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
+var token = localStorage.getItem("token");
+console.log(token);
+axios.get('/getstatus', {
+  headers: {
+    'Authorization': 'Bearer ' + token
+  }
+}).then(function (response) {
+  if (response.status == 200) {
+    console.log("go to main");
+    window.location.replace("/main");
+  }else {
+    console.log("go to login");
+  }
+  //console.log(response);
 
-function removeToken() {
-  localStorage.removeItem("token");
-  console.log("removed token");
-}
+}).catch(function (error) {
+  console.log(error);
+  console.log("go to error");
+});
 
-function readToken() {
-  var testvar = localStorage.getItem("token");
-  console.log(testvar);
-}
+window.addEventListener("keyup", function(event) {
+	if (event.keyCode == 13) {
+		event.preventDefault();
+		document.getElementById("loginButton").click();
+	}
+});
 
-function login() {
-  let username = document.getElementById("username").value;
+function checkUserinfo() {
+	let username = document.getElementById("username").value;
   let password = document.getElementById("password").value;
+  console.log(username, password);
   axios.post('/users', {
     "username" : username,
     "password" : password
