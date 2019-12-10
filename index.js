@@ -26,11 +26,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const options = {
-    index: 'index.html'
+    index: false
 };
 
-app.use('public', verifyToken);
-app.use('public', express.static((__dirname, 'public')));
+app.use(express.static('public', options));
 
 app.get('/', verifyToken, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
