@@ -8,7 +8,6 @@ function getTemperature() {
   axios.get('http://ec2-35-158-176-134.eu-central-1.compute.amazonaws.com/temperature/1')
 	.then(function (response) {
     var temperatureText = response.data[0].currentTemperature;
-    temperatureText = parseFloat(temperatureText).toFixed(2);
     if (temperatureText > 0) {
       temperatureText = temperatureText + "°";
     }

@@ -1,9 +1,4 @@
-function init() {
-  window.setInterval(function() {
-    getLights();
-    postLights();
-  }, 1000);
-}
+
 
 function getLights() {
   axios.get('http://ec2-35-158-176-134.eu-central-1.compute.amazonaws.com/lights/1')
@@ -12,6 +7,7 @@ function getLights() {
 
     if (lightVal == "0") {
       document.getElementById("roomLights").checked = false;
+
     }
     else if (lightVal == "1") {
       document.getElementById("roomLights").checked = true;
@@ -25,25 +21,27 @@ function getLights() {
 
 function postLights() {
   var lightSwitch = document.getElementById("roomLights");
-  //var lightVal;
 
   if (lightSwitch.checked == true){
-    lightVal = "1";
+    axios.post('http://ec2-35-158-176-134.eu-central-1.compute.amazonaws.com/lights',
+      {"lightstatus": "1"})
+      .then(function(response){
+      })
+      .catch(function (error) {
+        console.log(error);
+        return;
+      });
   }
-  else {
-    lightVal = "0";
+  else if (lightSwitch.checked == false) {
+    console.log("0");
+    axios.post('http://ec2-35-158-176-134.eu-central-1.compute.amazonaws.com/lights',
+      {"lightstatus": "0"})
+      .then(function(response){
+      })
+      .catch(function (error) {
+        console.log(error);
+        return;
+      });
   }
-
-  axios.post('http://ec2-35-158-176-134.eu-central-1.compute.amazonaws.com/lights',
-    {"lightstatus": lightVal})
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-  		console.log(error);
-  		return;
-  	});
 }
-
 getLights();
-init();
