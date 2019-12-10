@@ -25,7 +25,7 @@ const customHeaderCheckerMiddleware = function(req, res, next) {
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/public', express.static('public'));
+app.use('/', express.static('public'));
 
 app.get('/', verifyToken, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
