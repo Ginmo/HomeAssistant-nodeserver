@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const options = {
-    index: false
+    index: 'index.html'
 };
 
 app.use(express.static('public', options));
