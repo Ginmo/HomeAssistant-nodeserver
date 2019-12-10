@@ -32,7 +32,7 @@ app.get('/', verifyToken, (req, res) => {
         if (err) {
             res.sendStatus(401);
         } else {
-            res.sendFile(__dirname + '/index.html');
+            res.sendFile(__dirname + '/public/index.html');
         }
     });
 });
