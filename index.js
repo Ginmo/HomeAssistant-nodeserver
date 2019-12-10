@@ -29,14 +29,14 @@ const options = {
     index: 'index.html'
 };
 
-app.use(express.static('public', options));
+app.use(express.static('/'));
 
 app.get('/', verifyToken, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
             res.sendStatus(401);
         } else {
-            res.sendFile(__dirname + '/public/index.html');
+            res.sendStatus(200);
         }
     });
 });
@@ -50,7 +50,7 @@ app.get('/main', verifyToken, (req, res) => {
         if (err) {
             res.sendStatus(401);
         } else {
-            res.sendFile(__dirname + '/public/index.html');
+            res.sendStatus(200);
         }
     });
 });
