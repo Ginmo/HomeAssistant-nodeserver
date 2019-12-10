@@ -1,5 +1,6 @@
 function init() {
   window.setInterval(function() {
+    getLights();
     postLights();
   }, 1000);
 }
@@ -24,7 +25,7 @@ function getLights() {
 
 function postLights() {
   var lightSwitch = document.getElementById("roomLights");
-  var lightVal = "0";
+  //var lightVal;
 
   if (lightSwitch.checked == true){
     lightVal = "1";
@@ -44,5 +45,5 @@ function postLights() {
   	});
 }
 
-//postLights();
+getLights();
 init();

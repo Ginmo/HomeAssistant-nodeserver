@@ -1,4 +1,10 @@
-function weatherBalloon() {
+function init() {
+  window.setInterval(function() {
+    getWeather();
+  }, 60000);
+}
+
+function getWeather() {
   fetch('https://api.openweathermap.org/data/2.5/weather?id=643493&appid=a28600688a20c09681c065b97217969c')
   .then(function(resp) { return resp.json() }) // Convert data to json
   .then(function(data) {
@@ -20,7 +26,10 @@ function drawWeather( d ) {
    document.getElementById('picurl').src = picurl;
 }
 
+getWeather();
+init();
+/*
 window.onload = function() {
   weatherBalloon();
-  getLights();
-}
+
+}*/
