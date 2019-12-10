@@ -25,10 +25,17 @@ const customHeaderCheckerMiddleware = function(req, res, next) {
 app.use(bodyParser.json());
 app.use(cors());
 
-const options = {
-    index: 'first.html'
-};
-app.use(express.static('public'));
+app.use('/public', express.static('public'));
+
+app.get('/', verifyToken, (req, res) => {
+    jwt.verify(req.token, 'secretkey', (err, authData) => {
+        if (err) {
+            res.sendStatus(401);
+        } else {
+            res.sendFile(__dirname + '/public/index.html');
+        }
+    });
+});
 
 app.get('/login', (req, res) => {
     res.sendFile(__dirname + '/public/login.html');
@@ -39,7 +46,6 @@ app.get('/main', verifyToken, (req, res) => {
         if (err) {
             res.sendStatus(401);
         } else {
-            //res.sendStatus(200);
             res.sendFile(__dirname + '/public/index.html');
         }
     });
