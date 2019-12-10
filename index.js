@@ -28,7 +28,7 @@ app.use(cors());
 const options = {
     index: 'first.html'
 };
-app.use(express.static('public', options));
+app.use(express.static('public'));
 
 app.get('/login', (req, res) => {
     res.sendFile(__dirname + '/public/login.html');
