@@ -29,7 +29,7 @@ const options = {
     index: 'index.html'
 };
 
-app.use(express.static('/public'));
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', verifyToken, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
