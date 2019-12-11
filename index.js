@@ -67,7 +67,7 @@ app.post('/users', (req, res) => {
         let password = req.body.password;
         console.log(username, password);
         for (let i = 0; i < users.length; i++) {
-            if (users[i].username == username && users[i].password == password) {
+            if (results[i].username == username && results[i].password == password) {
                 console.log("FOUND");
                 jwt.sign({username}, 'secretkey', { expiresIn: '1h'}, (err, token) => {
                     res.json({
