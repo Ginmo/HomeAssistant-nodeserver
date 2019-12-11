@@ -55,17 +55,10 @@ app.get('/main', verifyToken, (req, res) => {
     });
 });
 
-var users = [];
 app.post('/users', (req, res) => {
     db.query('SELECT * FROM users').then(results => {
-        console.log(results);
-        users = results;
-        console.log("ddd");
-        console.log(results[0].username);
-        console.log(results.length);
         let username = req.body.username;
         let password = req.body.password;
-        console.log(username, password);
         for (let i = 0; i < users.length; i++) {
             if (results[i].username == username && results[i].password == password) {
                 console.log("FOUND");
