@@ -34,7 +34,6 @@
 
 		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Home Assistant</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -74,10 +73,19 @@
 						<h2 class="heading-section mb-4 pb-md-3">
 						</h2>
 						<div class="card">
-						  <h5 class="card-header py-4">Kamera</h5>
+						  <h5 class="card-header py-4">Camera</h5>
 						  <div class="card-body">
 						    <h5 class="card-title"></h5>
-						    <p class="card-text">Kameran kuva tähän</p>
+                <iframe
+                width = 320px;
+                height = 190px;
+                overflow= hidden;
+                margin=  auto;
+                border = 1px solid green;
+                "
+                frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                src="http://192.168.1.170:8081" frameborder="0" allowfullscreen
+              ></iframe>                
 						  </div>
 						</div>
 					</div>
@@ -85,14 +93,14 @@
 						<h2 class="heading-section mb-4 pb-md-3">
 						</h2>
 						<div class="card">
-						  <h5 class="card-header py-4">Valot</h5>
+						  <h5 class="card-header py-4">Lights</h5>
 						  <div class="card-body">
 						    <h5 class="card-title"></h5>
                 <div class="form-check">
                   <label class="custom-control ios-switch">
                     <input type="checkbox" class="ios-switch-control-input" id="roomLights" onclick="postLights()">
                     <span class="ios-switch-control-indicator"></span>
-                    <span class="ios-switch-control-description">Valot päälle ja pois</span>
+                    <span class="ios-switch-control-description">Lights on/off</span>
                   </label>
                 </div>
 						  </div>
@@ -104,11 +112,11 @@
 						</h2>
 						<div class="card text-center">
 						  <h5 class="card-header py-4">
-						    Säätiedot ja lämpötila
+						    Temperature and weather
 						  </h5>
 						  <div class="card-body">
-						    <p class="card-text">Huoneen lämpötila</p>
-                <h1 class="card-text" id="roomTemperature">asdf</h1>
+						    <p class="card-text">Temperature of room</p>
+                <h1 class="card-text" id="roomTemperature">-</h1>
 						  </div>
 						  <div class="card-footer">
 
