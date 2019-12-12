@@ -28,9 +28,19 @@ app.use(cors());
 const options = {
     index: 'index.html'
 };
+app.get('/', verifyToken, (req, res, next) => {
+    jwt.verify(req.token, 'secretkey', (err, authData) => {
+        if (err) {
+            res.sendStatus(401);
+        } else {
+            res.sendStatus(200);
+        }
+    });
+});
 
 app.use(express.static('public', options));
 
+/*
 app.get('/', verifyToken, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
@@ -40,6 +50,7 @@ app.get('/', verifyToken, (req, res) => {
         }
     });
 });
+*/
 
 app.get('/login', (req, res) => {
     res.sendFile(__dirname + '/public/login.html');
