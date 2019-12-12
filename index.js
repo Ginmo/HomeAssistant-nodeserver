@@ -36,7 +36,7 @@ app.get('/', verifyToken, (req, res) => {
         if (err) {
             res.sendStatus(401);
         } else {
-            res.sendFile(__dirname + '/public/index.html');
+            res.sendStatus(200);
         }
     });
 });
@@ -50,26 +50,19 @@ app.get('/main', verifyToken, (req, res) => {
         if (err) {
             res.sendStatus(401);
         } else {
-            res.sendFile(__dirname + '/public/index.html');
+            res.sendStatus(200);
         }
     });
 });
 
-var users = [];
 app.post('/users', (req, res) => {
     db.query('SELECT * FROM users').then(results => {
-        console.log(results);
-        users = results;
-        console.log("ddd");
-        console.log(results[0].username);
-        console.log(results.length);
         let username = req.body.username;
         let password = req.body.password;
-        console.log(username, password);
-        for (let i = 0; i < users.length; i++) {
-            if (users[i].username == username && users[i].password == password) {
+        for (let i = 0; i < results.length; i++) {
+            if (results[i].username == username && results[i].password == password) {
                 console.log("FOUND");
-                jwt.sign({username}, 'secretkey', { expiresIn: '60s'}, (err, token) => {
+                jwt.sign({username}, 'secretkey', { expiresIn: '1h'}, (err, token) => {
                     res.json({
                         token
                     });
